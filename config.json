@@ -1,0 +1,33 @@
+{
+    "twitter": {
+        "twitterToken": "940912433824088064-MpFuJLp5OYKHHCDZx4Bsf5vqrihkcGR",
+        "twitterConsumerKey": "PIJ1oD5m4W9LTgeHCRjQTSHfI",
+        "twitterTokenSecret": "SqmOzjSmIi7o8Nh6S6AuVHFPWnCahLp2z5rxSi3yIWYe7",
+        "twitterConsumerSecret": "xDhnBqHhg9G6UmxgNnaKjYZEY7Dm12V7ynBDjx12lAxr95TzGS"
+    },
+    "tweetTo": "@StarHubCares",
+    "internetSpeed": "1000",
+    "tweetThresholds": {
+        "50": [
+            "Hey {tweetTo} I'm paying for {internetSpeed}Mb/s but getting only {downloadResult} Mb/s?!? Shame.",
+            "Oi! {tweetTo} $39/month for {internetSpeed}Mbit/s and I only get {downloadResult} Mbit/s? How does that seem fair?"
+        ],
+        "100": [
+            "Uhh {tweetTo} for $39/month I expect better than {downloadResult}Mbit/s when I'm paying for {internetSpeed}Mbit/s. Fix your network!",
+            "Hey {tweetTo} why am I only getting {downloadResult}Mb/s when I pay for {internetSpeed}Mb/s? $39/month for this??"
+        ],
+        "400": [
+            "Well {tweetTo} I guess {downloadResult}Mb/s is better than nothing, still not worth $39/mnth when I expect {internetSpeed}Mb/s"
+        ],
+        "500": [
+            "Well {tweetTo} I guess {downloadResult}Mb/s is almost halfway to {internetSpeed}Mb/s, but we still have some way to go"
+        ]
+    },
+    "log": {
+        "type": "csv",
+        "files": {
+            "ping": "pingresults.csv",
+            "speed": "speedrestuls.csv"
+        }
+    }
+}
