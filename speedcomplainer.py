@@ -13,10 +13,10 @@ from logger import Logger
 shutdownFlag = False
 
 def main(filename, argv):
-    print("======================================")
-    print(" Starting Speed Complainer!           ")
-    print(" Lets get noisy!                      ")
-    print("======================================")
+    print "======================================"
+    print " Starting Speed Complainer!           "
+    print " Lets get noisy!                      "
+    print "======================================"
 
     global shutdownFlag
     signal.signal(signal.SIGINT, shutdownHandler)
@@ -34,14 +34,14 @@ def main(filename, argv):
                 time.sleep(1)
 
         except Exception as e:
-            print('Error: %s' % e)
+            print 'Error: %s' % e
             sys.exit(1)
 
     sys.exit()
 
 def shutdownHandler(signo, stack_frame):
     global shutdownFlag
-    print('Got shutdown signal (%s: %s).' % (signo, stack_frame))
+    print 'Got shutdown signal (%s: %s).' % (signo, stack_frame)
     shutdownFlag = True
 
 class Monitor():
@@ -50,11 +50,11 @@ class Monitor():
         self.lastSpeedTest = None
 
     def run(self):
-        if not self.lastPingCheck or (datetime.now() - self.lastPingCheck).total_seconds() >= 120:
+        if not self.lastPingCheck or (datetime.now() - self.lastPingCheck).total_seconds() >= 60:
             self.runPingTest()
             self.lastPingCheck = datetime.now()
 
-        if not self.lastSpeedTest or (datetime.now() - self.lastSpeedTest).total_seconds() >= 1800:
+        if not self.lastSpeedTest or (datetime.now() - self.lastSpeedTest).total_seconds() >= 3600:
             self.runSpeedTest()
             self.lastSpeedTest = datetime.now()
 
@@ -129,7 +129,7 @@ class SpeedTest(threading.Thread):
     def tweetResults(self, speedTestResults):
         thresholdMessages = self.config['tweetThresholds']
         message = None
-        for (threshold, messages) in list(thresholdMessages.items()):
+        for (threshold, messages) in thresholdMessages.items():
             threshold = float(threshold)
             if speedTestResults['downloadResult'] < threshold:
                 message = messages[random.randint(0, len(messages) - 1)].replace('{tweetTo}', self.config['tweetTo']).replace('{internetSpeed}', self.config['internetSpeed']).replace('{downloadResult}', str(speedTestResults['downloadResult']))
@@ -166,7 +166,4 @@ if __name__ == '__main__':
     dRunner.daemon_context.working_directory = workingDirectory
     dRunner.daemon_context.umask = 0o002
     dRunner.daemon_context.signal_map = { signal.SIGTERM: 'terminate', signal.SIGUP: 'terminate' }
-    dRunner.do_action()
-
-
-
+dRunner.do_action()
